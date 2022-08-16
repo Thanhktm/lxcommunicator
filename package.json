@@ -29,7 +29,6 @@
     "crypto-js": "^3.1.9-1",
     "derequire": "^2.0.6",
     "moment": "^2.22.2",
-    "node-jsencrypt": "^1.0.0",
     "object.values": "^1.0.4",
     "q": "^1.5.1",
     "sprintf-js": "^1.1.1",
