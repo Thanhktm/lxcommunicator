@@ -8,7 +8,7 @@
     var $ = require('../vendor/JqueryWrapper'),
         CryptoJS = require('crypto-js'),
         CryptoAdapter = require('../vendor/CryptoAdapter'),
-        JSEncryptWrapper = require('react-native-rsa-native'),
+        RSA = require('react-native-rsa-native').RSA,
         FeatureCheck = require('../vendor/FeatureCheck'),
         Commands = require('../vendor/Commands'),
         DEBUG = require('../vendor/Debug').HttpRequest;
@@ -389,9 +389,9 @@
              * @returns {string} base64
              */
             _rsaEncrypt: function _rsaEncrypt(plaintext, publicKey) {
-                var encrypt = new JSEncryptWrapper();
+//                 var encrypt = new JSEncryptWrapper();
 //                 encrypt.setPublicKey(publicKey);
-                return encrypt.encrypt(plaintext, publicKey);
+                return RSA.encrypt(plaintext, publicKey);
             },
 
             _hexToString: function _hexToString(d) {
