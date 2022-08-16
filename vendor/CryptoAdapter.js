@@ -12,7 +12,6 @@
 
     var CryptoJS = require('crypto-js');
     var Commands = require('./Commands');
-    var JSEncryptWrapper = require('node-jsencrypt');
     var Debug = require('./Debug');
 
     //////////////////////////////////////////////////////////////////////
@@ -152,9 +151,18 @@
      * @returns {string} base64
      */
     CryptoAdapter.rsaEncrypt = function rsaEncrypt(plaintext, publicKey) {
-        var encrypt = new JSEncryptWrapper();
-        encrypt.setPublicKey(publicKey);
-        return encrypt.encrypt(plaintext);
+         var encrypted = CryptoJS.RSA.encrypt(
+                    plaintext,
+                    CryptoJS.enc.Hex.parse(publicKey),
+                    {
+                        keySize: 1024,
+                        padding: CryptoJS.pad.Pkcs1Padding,
+                        // mode: CryptoJS.mode.ECB,
+                        mode: CryptoJS.mode.CBC,
+                        iv: CryptoJS.enc.Hex.parse(this._aesIV())
+                    }
+                );
+        return encrypted.toString(CryptoJS.enc.Base64);
     };
 
 
